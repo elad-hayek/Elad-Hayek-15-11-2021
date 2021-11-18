@@ -1,9 +1,10 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import { routes } from '../constants/navigation'
-import Favorites from './Favorites'
-import Home from './Home'
-import NavBar from './NavBar'
+import {routes} from '../../constants/navigation'
+import Favorites from '../Favorites/Favorites'
+import Home from '../Home/Home'
+import NavBar from '../NavBar/NavBar'
+
 
 const App = () =>{
 
