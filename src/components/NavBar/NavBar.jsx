@@ -1,14 +1,15 @@
 import React from 'react'
-import {Navbar, Container, Nav, Row, Col} from 'react-bootstrap'
+import {Navbar, Container, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { routes } from '../../constants/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCloudSun} from '@fortawesome/free-solid-svg-icons'
+import './NavBar.css'
 
 
 const NavBar = () =>{
     return(
-        <Navbar bg="light" variant="light">
+        <Navbar id="navbar" bg="light" variant="light">
             <Container>
                 <Navbar.Brand as={Link} to={routes.HOME}>
                     <FontAwesomeIcon icon={faCloudSun} size="xl" style={{marginRight: 10}}/>
