@@ -19,9 +19,8 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
 
                 <div className="top-of-information-card">
                     <div className="today-city-information">
-                        <img width="75" height="45" alt="" src={returnUrlForWeatherIcon(currentLocation.WeatherIcon)}/>
                         <div className="today-city-name-and-temperature">
-                            <div>tel aviv</div>
+                            <div>Tel-Aviv</div>
                             <div>{currentLocation.Temperature.Metric.Value} &#8451;</div>
                         </div>
                     </div>
@@ -34,6 +33,7 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                 </div>
 
                 <div className="middle-of-information-card">
+                    <img width="120" height="72" alt="" src={returnUrlForWeatherIcon(currentLocation.WeatherIcon)}/>
                     <span className="current-weather-text">{currentLocation.WeatherText}</span>
                 </div>
 
