@@ -13,7 +13,7 @@ export const favoritesReducer = (state = initialValues, {type, payload}) => {
         case ADD_TO_FAVORITES:
             return {...state, favorites:[...state.favorites, payload]}
         case REMOVE_FROM_FAVORITES:
-            return {...state, favorites:state.favorites.filter(location=>location.key !== payload)}
+            return {...state, favorites:state.favorites.filter(location=>location.id !== payload)}
         default:
             return state
     }
