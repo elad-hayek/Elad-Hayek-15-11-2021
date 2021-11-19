@@ -4,8 +4,8 @@ import {
     }
 from '../constants/reducer-actions'
 
-export const addToFavorites = (key) => {
-    return { type: ADD_TO_FAVORITES, payload: key}
+export const addToFavorites = (location) => {
+    return { type: ADD_TO_FAVORITES, payload: location}
 }
 
 export const removeFromFavorites = (key) => {
