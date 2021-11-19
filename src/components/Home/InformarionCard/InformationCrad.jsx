@@ -38,16 +38,18 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                 </div>
 
                 <div className="bottom-of-information-card">
-                    {
-                        fiveDayForcast.map(forcast=>{
-                            console.log(forcast)
-                            return(
-                                <div key={Math.random()}>
-                                    <MiniForcastCard forcast={forcast} />
-                                </div>
-                            )
-                        })
-                    }
+                    <div className="mini-forcast-cards-container">
+                        {
+                            fiveDayForcast.map(forcast=>{
+                                console.log(forcast)
+                                return(
+                                    <div key={Math.random()}>
+                                        <MiniForcastCard forcast={forcast} />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
 
             </div>
