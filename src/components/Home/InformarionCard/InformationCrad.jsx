@@ -3,6 +3,15 @@ import './InformationCard.css'
 // import fiveDayForcast from '../../../apivalues/5dayforcastshort.json'
 // import currentLocation from '../../../apivalues/currentweathershort.json'
 import { MdStar, MdStarOutline } from "react-icons/md";
+import MiniForcastCard from '../MIniForcastCard/MiniForcastCard';
+import { weatherIamgesUrl } from '../../../constants/api';
+
+/** returns the correct url according to the icon number received  from the api */
+const returnUrlForWeatherIcon = (iconNumber) =>{
+    if(iconNumber<10)
+        iconNumber = `0${iconNumber}`
+    return weatherIamgesUrl.replace("@@", iconNumber)
+}
 
 const InformationCard = ({currentLocation, fiveDayForcast}) =>{
     return(
@@ -11,10 +20,10 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
 
                 <div className="top-of-information-card">
                     <div className="today-city-information">
-                        <img width="50" height="50"/>
+                        <img width="75" height="45" alt="" src={returnUrlForWeatherIcon(currentLocation.WeatherIcon)}/>
                         <div className="today-city-name-and-temperature">
                             <div>tel aviv</div>
-                            <div>{`${currentLocation[0].Temperature.Metric.Value} ${currentLocation[0].Temperature.Metric.Unit}`}</div>
+                            <div>{`${currentLocation.Temperature.Metric.Value} ${currentLocation.Temperature.Metric.Unit}`}</div>
                         </div>
                     </div>
 
@@ -25,11 +34,20 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                 </div>
 
                 <div className="middle-of-information-card">
-                    <span class="current-weather-text">{currentLocation[0].WeatherText}</span>
+                    <span className="current-weather-text">{currentLocation.WeatherText}</span>
                 </div>
 
                 <div className="bottom-of-information-card">
-                    <span>{currentLocation[0].WeatherText}</span>
+                    {
+                        fiveDayForcast.map(forcast=>{
+                            console.log(forcast)
+                            return(
+                                <div key={Math.random()}>
+                                    <MiniForcastCard />
+                                </div>
+                            )
+                        })
+                    }
                 </div>
 
             </div>
