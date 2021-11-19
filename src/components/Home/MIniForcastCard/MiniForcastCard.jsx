@@ -1,15 +1,27 @@
-import React from 'react'
-import fiveDayForcast from '../../apivalues/5dayforcastshort.json'
-import currentLocation from '../../apivalues/currentweathershort.json'
+import { Card } from 'react-bootstrap'
+import { weekday } from '../../../constants/general'
 import './MiniForcastCard.css'
-import InformationCard from './InformarionCard/InformationCrad'
 
+const getDayByDateTime = (dateTime) =>{
+    const date = new Date(dateTime)
+    return weekday[date.getDay()]
+}
 
-const MiniForcastCard = () =>{
+const MiniForcastCard = ({forcast}) =>{
 
     return(
-        <div>
-            mini forcast card!
+        <div> 
+            <Card>
+                <Card.Body>
+                    <Card.Title>{getDayByDateTime(forcast.Date)}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{forcast.Day.IconPhrase}</Card.Subtitle>
+                    <Card.Text>
+                        {forcast.Temperature.Minimum.Value} &#8451;
+                            - 
+                            {forcast.Temperature.Maximum.Value} &#8451;
+                        </Card.Text>
+                </Card.Body>
+            </Card>
         </div>
     )
 
