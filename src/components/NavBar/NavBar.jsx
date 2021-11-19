@@ -12,7 +12,7 @@ const NavBar = () =>{
         <Navbar id="navbar" bg="light" variant="light">
             <Container>
                 <Navbar.Brand as={Link} to={routes.HOME}>
-                    <FontAwesomeIcon icon={faCloudSun} size="xl" style={{marginRight: 10}}/>
+                    <FontAwesomeIcon icon={faCloudSun} size="lg" style={{marginRight: 10}}/>
                     Weather App
                 </Navbar.Brand>
 
