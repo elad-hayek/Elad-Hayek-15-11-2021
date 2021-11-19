@@ -12,7 +12,7 @@ const Home = () =>{
         <div>
             <SearchBar/>
             <div className="home-information-container">
-                <InformationCard currentLocation={currentLocation} fiveDayForcast={fiveDayForcast}/>
+                <InformationCard currentLocation={currentLocation[0]} fiveDayForcast={fiveDayForcast.DailyForecasts}/>
             </div>
         </div>
     )
