@@ -5,8 +5,7 @@ import MiniForcastCard from '../MIniForcastCard/MiniForcastCard';
 import { weatherIamgesUrl } from '../../../constants/api';
 import { IconContext } from 'react-icons/lib';
 import { addToFavorites, removeFromFavorites } from '../../../actionCreators/favoritesActions';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 /** returns the correct url according to the icon number received  from the api */
 const returnUrlForWeatherIcon = (iconNumber) =>{
@@ -15,38 +14,41 @@ const returnUrlForWeatherIcon = (iconNumber) =>{
     return weatherIamgesUrl.replace("@@", iconNumber)
 }
 
-const InformationCard = ({currentLocation, fiveDayForcast}) =>{
+const InformationCard = ({fiveDayForcast}) =>{
     const favorites = useSelector(state=>state.favorites.favorites)
+    const currentLocation = useSelector(state=>state.home.locationToView)
     const dispatch = useDispatch()
     const [isFavorite, setIsFavorite] = useState(false)
-    const key = 2
 
     useEffect(()=>{
+        console.log(currentLocation)
         favorites.forEach(location => {
-            if(location.key === key)
+            if(location.id === currentLocation.id)
                 setIsFavorite(true)
         })
     },[])
 
     const handleAddToFavorites = () =>{
-        dispatch(addToFavorites({key: key}))
+        dispatch(addToFavorites(currentLocation))
         setIsFavorite(true)
     }
     
     const handleRemoveFromFavorites = () =>{
-        dispatch(removeFromFavorites(key))
+        dispatch(removeFromFavorites(currentLocation.id))
         setIsFavorite(false)
     }
 
     return(
+        Object.keys(currentLocation).length !== 0 &&
+        currentLocation !== undefined && currentLocation !== null ?
         <div className="information-card-container">
             <div className="information-card">
 
                 <div className="top-of-information-card">
                     <div className="today-city-information">
                         <div className="today-city-name-and-temperature">
-                            <div>Tel-Aviv</div>
-                            <div>{currentLocation.Temperature.Metric.Value} &#8451;</div>
+                            <div>{currentLocation.name}</div>
+                            <div>{currentLocation.location.Temperature.Metric.Value} &#8451;</div>
                         </div>
                     </div>
 
@@ -59,8 +61,8 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                 </div>
 
                 <div className="middle-of-information-card">
-                    <img width="120" height="72" alt="" src={returnUrlForWeatherIcon(currentLocation.WeatherIcon)}/>
-                    <span className="current-weather-text">{currentLocation.WeatherText}</span>
+                    <img width="120" height="72" alt="" src={returnUrlForWeatherIcon(currentLocation.location.WeatherIcon)}/>
+                    <span className="current-weather-text">{currentLocation.location.WeatherText}</span>
                 </div>
 
                 <div className="bottom-of-information-card">
@@ -79,6 +81,8 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
 
             </div>
         </div>
+        :
+        <div>loading...</div>
     )
 
 }
