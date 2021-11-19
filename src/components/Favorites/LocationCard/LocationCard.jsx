@@ -1,14 +1,25 @@
 import React from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import { updateMainLocationToView } from '../../../actionCreators/homeActions'
 import './LocationCard.css'
+import {routes} from '../../../constants/navigation'
 
 
 const LocationCard = ({location}) =>{
+    const dispatch = useDispatch()
+    const history = useHistory()
+
+    const handleClick = () =>{
+        dispatch(updateMainLocationToView(location))
+        history.push(routes.HOME)
+
+    }
 
     return(
-        <div class="location-card">
-            <Card>
+        <div className="location-card">
+            <Card onClick={handleClick}>
                 <Card.Header as="h5">{location.name}</Card.Header>
                 <Card.Body>
                     <Card.Title>{location.location.WeatherText}</Card.Title>
