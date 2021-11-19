@@ -31,7 +31,7 @@ export const fetchCurrentWeather = (key) =>{
         })
         .then(data=>{
             dispatch(fetchCurrentWeatherSuccess(data))
-            dispatch(updateMainLocationToView({id:"215854",name:"tel-aviv", location: data[0]}))
+            dispatch(updateMainLocationToView({id:key, name:"tel-aviv", location: data[0]}))
         })
         .catch(err=>{
             dispatch(fetchCurrentWeatherFailure(err))
