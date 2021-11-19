@@ -1,16 +1,17 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
+import './SearchBar.css'
 
 
 const SearchBar = () =>{
 
     return(
-        <>
-        {/* <Container> */}
-                <Form.Control  placeholder="Search for a city" />
-        {/* </Container> */}
-        </>
+        <div className="main-searchbar-container">
+            <Container>
+                    <Form.Control  placeholder="Search for a city" />
+            </Container>
+        </div>
     )
 
 }
