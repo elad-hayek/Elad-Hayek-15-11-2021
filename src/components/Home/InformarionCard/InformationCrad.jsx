@@ -21,7 +21,6 @@ const InformationCard = ({fiveDayForcast}) =>{
     const [isFavorite, setIsFavorite] = useState(false)
 
     useEffect(()=>{
-        console.log(currentLocation)
         favorites.forEach(location => {
             if(location.id === currentLocation.id)
                 setIsFavorite(true)
@@ -54,7 +53,7 @@ const InformationCard = ({fiveDayForcast}) =>{
 
                     <div className="add-to-favorites-container">
                         <IconContext.Provider value={{className: 'favorites-icon'}}>
-                            {!isFavorite && <MdStarOutline onClick={handleAddToFavorites} /> }
+                            {!isFavorite && <MdStarOutline onClick={handleAddToFavorites}/> }
                             {isFavorite &&  <MdStar onClick={handleRemoveFromFavorites} />}
                         </IconContext.Provider>
                     </div>
