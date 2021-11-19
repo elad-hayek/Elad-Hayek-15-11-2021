@@ -10,7 +10,7 @@ const getDayByDateTime = (dateTime) =>{
 const MiniForcastCard = ({forcast}) =>{
 
     return(
-        <div class="mini-forcast-card"> 
+        <div className="mini-forcast-card"> 
             <Card>
                 <Card.Body>
                     <Card.Title>{getDayByDateTime(forcast.Date)}</Card.Title>
