@@ -1,0 +1,42 @@
+.information-card-container{
+    width: 95%;
+    display:flex;
+    justify-content:center;
+    border:3px solid rgba(0 0 0 /50%);
+    border-radius: 5px;
+    height: 70vh;
+}
+.information-card{
+    width: 95%;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.top-of-information-card{
+    display: flex;
+    justify-content: space-around;
+    border: 4px solid yellow;
+}
+.today-city-information{
+    display:flex;
+}
+.today-city-name-and-temperature{
+    display: block;
+    margin-left: 10px;
+}
+.middle-of-information-card{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid blue;
+}
+.current-weather-text{
+    font-size:40px;
+}
+.bottom-of-information-card{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid green;
+}
