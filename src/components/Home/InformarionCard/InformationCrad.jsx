@@ -1,13 +1,12 @@
 import React from 'react'
 import './InformationCard.css'
-// import fiveDayForcast from '../../../apivalues/5dayforcastshort.json'
-// import currentLocation from '../../../apivalues/currentweathershort.json'
 import { MdStar, MdStarOutline } from "react-icons/md";
 import MiniForcastCard from '../MIniForcastCard/MiniForcastCard';
 import { weatherIamgesUrl } from '../../../constants/api';
+import { IconContext } from 'react-icons/lib';
 
 /** returns the correct url according to the icon number received  from the api */
-const returnUrlForWeatherIcon = (iconNumber) =>{
+export const returnUrlForWeatherIcon = (iconNumber) =>{
     if(iconNumber<10)
         iconNumber = `0${iconNumber}`
     return weatherIamgesUrl.replace("@@", iconNumber)
@@ -23,13 +22,14 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                         <img width="75" height="45" alt="" src={returnUrlForWeatherIcon(currentLocation.WeatherIcon)}/>
                         <div className="today-city-name-and-temperature">
                             <div>tel aviv</div>
-                            <div>{`${currentLocation.Temperature.Metric.Value} ${currentLocation.Temperature.Metric.Unit}`}</div>
+                            <div>{currentLocation.Temperature.Metric.Value} &#8451;</div>
                         </div>
                     </div>
 
                     <div className="add-to-favorites-container">
-                        <MdStar/>
-                        <MdStarOutline/>
+                        <IconContext.Provider value={{className: 'favorites-icon'}}>
+                            <MdStarOutline/>
+                        </IconContext.Provider>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                             console.log(forcast)
                             return(
                                 <div key={Math.random()}>
-                                    <MiniForcastCard />
+                                    <MiniForcastCard forcast={forcast} />
                                 </div>
                             )
                         })
