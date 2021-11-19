@@ -12,7 +12,7 @@ const Home = () =>{
         <div>
             <SearchBar/>
             <div className="home-information-container">
-                <InformationCard />
+                <InformationCard currentLocation={currentLocation} fiveDayForcast={fiveDayForcast}/>
             </div>
         </div>
     )

@@ -1,10 +1,10 @@
 import React from 'react'
 import './InformationCard.css'
-import fiveDayForcast from '../../../apivalues/5dayforcastshort.json'
-import currentLocation from '../../../apivalues/currentweathershort.json'
+// import fiveDayForcast from '../../../apivalues/5dayforcastshort.json'
+// import currentLocation from '../../../apivalues/currentweathershort.json'
 import { MdStar, MdStarOutline } from "react-icons/md";
 
-const InformationCard = () =>{
+const InformationCard = ({currentLocation, fiveDayForcast}) =>{
     return(
         <div className="information-card-container">
             <div className="information-card">
