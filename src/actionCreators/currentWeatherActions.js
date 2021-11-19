@@ -1,22 +1,40 @@
+import { apiKey, currentWeatherUrl } from '../constants/api'
 import {
     FETCH_CURRENT_WEATHER_REQUEST,
     FETCH_CURRENT_WEATHER_SUCCESS,
     FETCH_CURRENT_WEATHER_FAILURE
 }
 from '../constants/reducer-actions'
+import { updateMainLocationToView } from './homeActions'
     
-export const fetchCurrentWeatherRequest = () => {
+const fetchCurrentWeatherRequest = () => {
     return { type: FETCH_CURRENT_WEATHER_REQUEST }
 }
 
-export const fetchCurrentWeatherSuccess = (data) => {
-    return { type: FETCH_CURRENT_WEATHER_SUCCESS ,payload: data }
+const fetchCurrentWeatherSuccess = (data) => {
+    return { type: FETCH_CURRENT_WEATHER_SUCCESS, payload: data }
 }
 
-export const fetchCurrentWeatherRequest = (error) => {
+const fetchCurrentWeatherFailure = (error) => {
     return { type: FETCH_CURRENT_WEATHER_FAILURE, payload: error }
 }
 
-export const fetchCurrentWeather = () =>{
-    
+export const fetchCurrentWeather = (key) =>{
+    return async (dispatch)=>{
+        dispatch(fetchCurrentWeatherRequest())
+        await fetch(`${currentWeatherUrl}${key}?apikey=${apiKey}`)
+        .then(response=>{
+            if(response.status !== 200){
+                return response.text().then(text=> {throw new Error(text)})
+            }
+            return response.json()
+        })
+        .then(data=>{
+            dispatch(fetchCurrentWeatherSuccess(data))
+            dispatch(updateMainLocationToView({id:"215854",name:"tel-aviv", location: data[0]}))
+        })
+        .catch(err=>{
+            dispatch(fetchCurrentWeatherFailure(err))
+        })
+    }
 }
