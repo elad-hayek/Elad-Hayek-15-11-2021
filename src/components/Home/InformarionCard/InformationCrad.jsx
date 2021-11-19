@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './InformationCard.css'
 import { MdStar, MdStarOutline } from "react-icons/md";
 import MiniForcastCard from '../MIniForcastCard/MiniForcastCard';
 import { weatherIamgesUrl } from '../../../constants/api';
 import { IconContext } from 'react-icons/lib';
+import { addToFavorites, removeFromFavorites } from '../../../actionCreators/favoritesActions';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 /** returns the correct url according to the icon number received  from the api */
-export const returnUrlForWeatherIcon = (iconNumber) =>{
+const returnUrlForWeatherIcon = (iconNumber) =>{
     if(iconNumber<10)
         iconNumber = `0${iconNumber}`
     return weatherIamgesUrl.replace("@@", iconNumber)
 }
 
 const InformationCard = ({currentLocation, fiveDayForcast}) =>{
+    const favorites = useSelector(state=>state.favorites.favorites)
+    const dispatch = useDispatch()
+    const [isFavorite, setIsFavorite] = useState(false)
+    const key = 2
+
+    useEffect(()=>{
+        favorites.forEach(location => {
+            if(location.key === key)
+                setIsFavorite(true)
+        })
+    },[])
+
+    const handleAddToFavorites = () =>{
+        dispatch(addToFavorites({key: key}))
+        setIsFavorite(true)
+    }
+    
+    const handleRemoveFromFavorites = () =>{
+        dispatch(removeFromFavorites(key))
+        setIsFavorite(false)
+    }
+
     return(
         <div className="information-card-container">
             <div className="information-card">
@@ -27,7 +52,8 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
 
                     <div className="add-to-favorites-container">
                         <IconContext.Provider value={{className: 'favorites-icon'}}>
-                            <MdStarOutline/>
+                            {!isFavorite && <MdStarOutline onClick={handleAddToFavorites} /> }
+                            {isFavorite &&  <MdStar onClick={handleRemoveFromFavorites} />}
                         </IconContext.Provider>
                     </div>
                 </div>
@@ -41,7 +67,6 @@ const InformationCard = ({currentLocation, fiveDayForcast}) =>{
                     <div className="mini-forcast-cards-container">
                         {
                             fiveDayForcast.map(forcast=>{
-                                console.log(forcast)
                                 return(
                                     <div key={Math.random()}>
                                         <MiniForcastCard forcast={forcast} />
