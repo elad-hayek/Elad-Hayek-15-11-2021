@@ -13,3 +13,6 @@
     flex-wrap: wrap;
     column-gap: 10px;
 }
+.no-locations-text{
+    font-size: 35px;
+}

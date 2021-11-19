@@ -10,15 +10,21 @@ const Favorites = () =>{
 
     return(
         <div className="favorites-container">
-            <div className="favorites-cards-container">
-                {
-                    [...f,...f,...f].map(location=>{
-                        return(
-                            <LocationCard location={location} />
-                        )
-                    })
-                }
-            </div>
+            { favorites.length !== 0?
+                <div className="favorites-cards-container">
+                    {
+                        [...f,...f,...f].map(location=>{
+                            return(
+                                <LocationCard location={location} key={Math.random()}/>
+                            )
+                        })
+                    }
+                </div>
+                :
+                <div className="no-locations-text">
+                    No locations have been added go to the home page to add locations now !
+                </div>
+            }
         </div>
     )
 
