@@ -13,7 +13,7 @@ const NavBar = () =>{
             <Container>
                 <Navbar.Brand as={Link} to={routes.HOME}>
                     <FontAwesomeIcon icon={faCloudSun} size="xl" style={{marginRight: 10}}/>
-                    Weahter App
+                    Weather App
                 </Navbar.Brand>
 
                 <Nav>
