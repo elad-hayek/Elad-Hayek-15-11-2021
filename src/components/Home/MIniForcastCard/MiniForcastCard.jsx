@@ -1,4 +1,5 @@
 import { Card } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import { weekday } from '../../../constants/general'
 import './MiniForcastCard.css'
 
@@ -8,10 +9,11 @@ const getDayByDateTime = (dateTime) =>{
 }
 
 const MiniForcastCard = ({forcast}) =>{
+    const theme = useSelector(state=>state.app.theme)
 
     return(
         <div className="mini-forcast-card"> 
-            <Card>
+            <Card bg={theme} variant={theme}>
                 <Card.Body>
                     <Card.Title>{getDayByDateTime(forcast.Date)}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{forcast.Day.IconPhrase}</Card.Subtitle>
