@@ -6,6 +6,9 @@ import LocationCard from './LocationCard/LocationCard'
 
 const Favorites = () =>{
     const favorites = useSelector(state=>state.favorites.favorites)
+    // const f = [...favorites,...favorites,...favorites,...favorites,...favorites,...favorites,
+    //     ...favorites,...favorites,...favorites,...favorites,...favorites,...favorites,
+    //     ...favorites,...favorites,...favorites,...favorites,...favorites,...favorites,]
 
     return(
         <div className="favorites-container">
