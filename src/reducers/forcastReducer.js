@@ -7,7 +7,7 @@ from '../constants/reducer-actions'
         
 const initialValues = {
     loading: false, 
-    data: [],
+    data: {},
     error: ''
 }
         
