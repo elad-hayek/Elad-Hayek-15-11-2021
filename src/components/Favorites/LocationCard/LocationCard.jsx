@@ -18,8 +18,8 @@ const LocationCard = ({location}) =>{
         dispatch(updateMainLocationToView(location))
 
         // if the key is diffrent from the one of forcast in store, fetch the forcast
-        if(objectValidation(forcast.data) || forcast.data.key !== location.key)
-            dispatch(fetchForcast(location.key, true))
+        if(objectValidation(forcast.data) || forcast.data.id !== location.id)
+            dispatch(fetchForcast(location.id, true))
 
 
         history.push(routes.HOME)
