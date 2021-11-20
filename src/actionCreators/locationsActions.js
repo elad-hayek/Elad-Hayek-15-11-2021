@@ -24,7 +24,12 @@ export const fetchLocations = (searchString) =>{
         await fetch(`${autocompleteUrl}?apikey=${apiKey}&q=${searchString}`)
         .then(response=>{
             if(response.status !== 200){
-                return response.text().then(text=> {throw new Error(text)})
+                try{
+                    return response.text().then(text=> {throw new Error(text)})
+                }
+                catch (err){
+                    throw err
+                }
             }
             return response.json()
         })
@@ -32,7 +37,7 @@ export const fetchLocations = (searchString) =>{
             dispatch(fetchLocationsSuccess(data))
         })
         .catch(err=>{
-            dispatch(fetchLocationsFailure(err))
+            dispatch(fetchLocationsFailure(err.message))
         })
     }
 }

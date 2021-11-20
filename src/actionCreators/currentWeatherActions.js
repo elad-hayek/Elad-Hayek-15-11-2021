@@ -25,7 +25,12 @@ export const fetchCurrentWeather = (key, name) =>{
         await fetch(`${currentWeatherUrl}${key}?apikey=${apiKey}`)
         .then(response=>{
             if(response.status !== 200){
-                return response.text().then(text=> {throw new Error(text)})
+                try{
+                    return response.text().then(text=> {throw new Error(text)})
+                }
+                catch (err){
+                    throw err
+                }
             }
             return response.json()
         })
@@ -34,7 +39,7 @@ export const fetchCurrentWeather = (key, name) =>{
             dispatch(updateMainLocationToView({id:key, name: name, location: data[0]}))
         })
         .catch(err=>{
-            dispatch(fetchCurrentWeatherFailure(err))
+            dispatch(fetchCurrentWeatherFailure(err.message))
         })
     }
 }

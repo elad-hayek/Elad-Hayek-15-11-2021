@@ -24,7 +24,12 @@ export const fetchForcast = (key, metric=false) =>{
         await fetch(`${forcastUrl}${key}?apikey=${apiKey}&metric=${metric}`)
         .then(response=>{
             if(response.status !== 200){
-                return response.text().then(text=> {throw new Error(text)})
+                try{
+                    return response.text().then(text=> {throw new Error(text)})
+                }
+                catch (err){
+                    throw err
+                }
             }
             return response.json()
         })
@@ -32,7 +37,7 @@ export const fetchForcast = (key, metric=false) =>{
             dispatch(fetchForcastSuccess({id:key, forcasts: data.DailyForecasts}))
         })
         .catch(err=>{
-            dispatch(fetchForcastFailure(err))
+            dispatch(fetchForcastFailure(err.message))
         })
     }
 }
