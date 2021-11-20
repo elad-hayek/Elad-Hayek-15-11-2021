@@ -12,6 +12,7 @@ import { fetchForcast } from '../../../actionCreators/forcastActions'
 const LocationCard = ({location}) =>{
     const dispatch = useDispatch()
     const forcast = useSelector(state=>state.forcast)
+    const theme = useSelector(state=>state.app.theme)
     const history = useHistory()
 
     const handleClick = () =>{
@@ -27,8 +28,8 @@ const LocationCard = ({location}) =>{
     }
 
     return(
-        <div className="location-card">
-            <Card onClick={handleClick}>
+        <div className={`location-card ${theme}`} >
+            <Card onClick={handleClick}  bg={theme} variant={theme}>
                 <Card.Header as="h5">{location.name}</Card.Header>
                 <Card.Body>
                     <Card.Title>{location.location.WeatherText}</Card.Title>
