@@ -5,7 +5,7 @@ import {
     FETCH_CURRENT_WEATHER_FAILURE
 }
 from '../constants/reducer-actions'
-import { updateMainLocationToView } from './homeActions'
+import { addToErrorStack, updateMainLocationToView } from './homeActions'
     
 const fetchCurrentWeatherRequest = () => {
     return { type: FETCH_CURRENT_WEATHER_REQUEST }
@@ -39,6 +39,7 @@ export const fetchCurrentWeather = (key, name) =>{
             dispatch(updateMainLocationToView({id:key, name: name, location: data[0]}))
         })
         .catch(err=>{
+            dispatch(addToErrorStack({id:Math.random(), name:"Home - weather details", error: err.message}))
             dispatch(fetchCurrentWeatherFailure(err.message))
         })
     }

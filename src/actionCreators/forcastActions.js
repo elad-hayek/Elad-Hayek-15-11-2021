@@ -5,6 +5,7 @@ import {
     FETCH_FORCAST_FAILURE
 }
 from '../constants/reducer-actions'
+import { addToErrorStack } from './homeActions'
     
 const fetchForcastRequest = () => {
     return { type: FETCH_FORCAST_REQUEST }
@@ -37,6 +38,7 @@ export const fetchForcast = (key, metric=false) =>{
             dispatch(fetchForcastSuccess({id:key, forcasts: data.DailyForecasts}))
         })
         .catch(err=>{
+            dispatch(addToErrorStack({id: Math.random(), name: "Home - forcast", error:err.message}))
             dispatch(fetchForcastFailure(err.message))
         })
     }
