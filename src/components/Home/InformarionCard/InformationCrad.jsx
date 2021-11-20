@@ -2,18 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './InformationCard.css'
 import { MdStar, MdStarOutline } from "react-icons/md";
 import MiniForcastCard from '../MIniForcastCard/MiniForcastCard';
-import { weatherIamgesUrl } from '../../../constants/api';
 import { IconContext } from 'react-icons/lib';
 import { addToFavorites, removeFromFavorites } from '../../../actionCreators/favoritesActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
+import { objectValidation, returnUrlForWeatherIcon } from '../../../actionCreators/generalFunctions';
 
-/** returns the correct url according to the icon number received  from the api */
-const returnUrlForWeatherIcon = (iconNumber) =>{
-    if(iconNumber<10)
-        iconNumber = `0${iconNumber}`
-    return weatherIamgesUrl.replace("@@", iconNumber)
-}
 
 const InformationCard = () =>{
     const favorites = useSelector(state=>state.favorites.favorites)
@@ -44,8 +38,7 @@ const InformationCard = () =>{
         <div className="information-card-container">
             <div className="information-card">
                 {
-                    Object.keys(currentLocation).length === 0 ||
-                    currentLocation === undefined || currentLocation === null
+                    objectValidation(currentLocation)
                     || currentWeather.loading?
 
                     <div className="top-of-information-card">
@@ -98,8 +91,7 @@ const InformationCard = () =>{
                             <div>{forcast.error}</div>
 
                             :
-                            Object.keys(forcast.data).length !== 0 &&
-                            forcast !== undefined && forcast !== null &&
+                            objectValidation(forcast.data, "and") &&
                              forcast.data.forcasts.map(day=>{
                                 return(
                                     <div key={Math.random()}>
