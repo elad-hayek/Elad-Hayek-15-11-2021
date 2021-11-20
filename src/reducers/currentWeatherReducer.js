@@ -16,7 +16,7 @@ export const currentWeatherReducer = (state = initialValues, {type, payload}) =>
         case FETCH_CURRENT_WEATHER_REQUEST:
             return {...state, loading: true}
         case FETCH_CURRENT_WEATHER_SUCCESS:
-            return {...state, loading: false, data: payload}
+            return {...state, loading: false, data: payload, error:''}
         case FETCH_CURRENT_WEATHER_FAILURE:
             return {...state, loading:false, error: payload}
         default:

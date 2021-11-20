@@ -16,7 +16,7 @@ export const locationsReducer = (state = initialValues, {type, payload}) => {
         case FETCH_LOCATIONS_REQUEST:
             return {...state, loading: true}
         case FETCH_LOCATIONS_SUCCESS:
-            return {...state, loading: false, data: payload}
+            return {...state, loading: false, data: payload, error:''}
         case FETCH_LOCATIONS_FAILURE:
             return {...state, loading:false, error: payload}
         default:
