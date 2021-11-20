@@ -19,10 +19,12 @@ const InformationCard = () =>{
 
     useEffect(()=>{
         favorites.forEach(location => {
-            if(location.id === currentLocation.id)
+            if(location.id === currentLocation.id){
                 setIsFavorite(true)
+            }
         })
-    },[])
+        return(()=>{setIsFavorite(false)})
+    },[currentLocation])
 
     const handleAddToFavorites = () =>{
         dispatch(addToFavorites(currentLocation))
