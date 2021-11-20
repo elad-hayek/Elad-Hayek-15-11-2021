@@ -5,11 +5,14 @@ import { routes } from '../../constants/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCloudSun} from '@fortawesome/free-solid-svg-icons'
 import './NavBar.css'
+import { useSelector } from 'react-redux'
 
 
 const NavBar = () =>{
+    const theme = useSelector(state=>state.app.theme)
+
     return(
-        <Navbar id="navbar" bg="light" variant="light">
+        <Navbar id="navbar" bg={theme} variant={theme}>
             <Container>
                 <Navbar.Brand as={Link} to={routes.HOME}>
                     <FontAwesomeIcon icon={faCloudSun} size="lg" style={{marginRight: 10}}/>
