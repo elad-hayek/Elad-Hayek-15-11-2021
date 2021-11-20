@@ -8,8 +8,8 @@ import fiveDayForcast from '../apivalues/5dayforcastshort.json'
         
 const initialValues = {
     loading: false, 
-    data: {id: "215854", forcasts: fiveDayForcast.DailyForecasts},
-    // data: {},
+    // data: {id: "215854", forcasts: fiveDayForcast.DailyForecasts},
+    data: {},
     error: ''
 }
         
