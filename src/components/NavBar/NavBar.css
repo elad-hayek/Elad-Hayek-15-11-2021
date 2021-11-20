@@ -4,3 +4,7 @@
 .navbar{
     border: 0.5px solid rgba(0 0 0 /11%);
 }
+.theme-switch{
+    font-size: 25px;
+    width: 30px;
+}
