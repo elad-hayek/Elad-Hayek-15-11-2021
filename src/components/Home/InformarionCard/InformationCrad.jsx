@@ -5,7 +5,7 @@ import MiniForcastCard from '../MIniForcastCard/MiniForcastCard';
 import { IconContext } from 'react-icons/lib';
 import { addToFavorites, removeFromFavorites } from '../../../actionCreators/favoritesActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
+import { OverlayTrigger, Spinner, Tooltip } from 'react-bootstrap';
 import { objectValidation, returnUrlForWeatherIcon } from '../../../actionCreators/generalFunctions';
 
 
@@ -64,12 +64,21 @@ const InformationCard = () =>{
                             </div>
                         </div>
 
-                        <div className="add-to-favorites-container">
-                            <IconContext.Provider value={{className: 'favorites-icon'}}>
-                                {!isFavorite && <MdStarOutline onClick={handleAddToFavorites}/> }
-                                {isFavorite &&  <MdStar onClick={handleRemoveFromFavorites} />}
-                            </IconContext.Provider>  
-                        </div>
+                        <OverlayTrigger
+                            placement='top'
+                            overlay={
+                            <Tooltip>
+                                {isFavorite? "Remove from favorites": "Add to favorites"}
+                            </Tooltip>
+                            }
+                        >
+                            <div className="add-to-favorites-container">
+                                    <IconContext.Provider value={{className: 'favorites-icon'}}>
+                                        {!isFavorite && <MdStarOutline onClick={handleAddToFavorites}/> }
+                                        {isFavorite &&  <MdStar onClick={handleRemoveFromFavorites} />}
+                                    </IconContext.Provider> 
+                            </div>
+                        </OverlayTrigger>
                     </div>
 
                     <div className="middle-of-information-card">
