@@ -4,4 +4,3 @@ export const currentWeatherUrl = "https://dataservice.accuweather.com/currentcon
 export const forcastUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/"
 export const autocompleteUrl = "https://dataservice.accuweather.com/locations/v1/cities/autocomplete"
 export const defaultLocation = {key: "215854", name:"Tel Aviv"}
-//7N

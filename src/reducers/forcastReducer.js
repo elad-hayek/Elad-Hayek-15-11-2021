@@ -4,11 +4,9 @@ import {
     FETCH_FORCAST_FAILURE
 }
 from '../constants/reducer-actions'
-import fiveDayForcast from '../apivalues/5dayforcastshort.json'
         
 const initialValues = {
     loading: false, 
-    // data: {id: "215854", forcasts: fiveDayForcast.DailyForecasts},
     data: {},
     error: ''
 }

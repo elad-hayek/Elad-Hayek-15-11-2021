@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
 import SearchBar from './SearchBar/SearchBar'
-import fiveDayForcast from '../../apivalues/5dayforcastshort.json'
-import currentLocationFromdb from '../../apivalues/currentweathershort.json'
 import './Home.css'
 import InformationCard from './InformarionCard/InformationCrad'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateMainLocationToView } from '../../actionCreators/homeActions'
 import { fetchCurrentWeather } from '../../actionCreators/currentWeatherActions'
 import { fetchForcast } from '../../actionCreators/forcastActions'
 import { objectValidation } from '../../actionCreators/generalFunctions'
@@ -26,8 +23,6 @@ const Home = () =>{
         
         if( objectValidation(forcast.data))
             dispatch(fetchForcast(defaultLocation.key, true))
-        
-        // dispatch(updateMainLocationToView({id:"215854",name:"Tel Aviv", location: currentLocationFromdb[0]}))
     },[])
 
     return(
