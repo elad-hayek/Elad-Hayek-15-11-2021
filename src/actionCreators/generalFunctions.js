@@ -1,7 +1,7 @@
 import { weatherIamgesUrl } from '../constants/api'
 
 
-/** check if a js object is empty according to the validation type*/
+/** check if a js object is empty or not according to the validation type*/
 export const objectValidation = (object, validationType="or") => {
     switch(validationType){
         case "or":
