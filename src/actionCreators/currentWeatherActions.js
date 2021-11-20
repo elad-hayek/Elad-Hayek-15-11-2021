@@ -19,7 +19,7 @@ const fetchCurrentWeatherFailure = (error) => {
     return { type: FETCH_CURRENT_WEATHER_FAILURE, payload: error }
 }
 
-export const fetchCurrentWeather = (key) =>{
+export const fetchCurrentWeather = (key, name) =>{
     return async (dispatch)=>{
         dispatch(fetchCurrentWeatherRequest())
         await fetch(`${currentWeatherUrl}${key}?apikey=${apiKey}`)
@@ -31,7 +31,7 @@ export const fetchCurrentWeather = (key) =>{
         })
         .then(data=>{
             dispatch(fetchCurrentWeatherSuccess(data))
-            dispatch(updateMainLocationToView({id:key, name:"tel-aviv", location: data[0]}))
+            dispatch(updateMainLocationToView({id:key, name: name, location: data[0]}))
         })
         .catch(err=>{
             dispatch(fetchCurrentWeatherFailure(err))
