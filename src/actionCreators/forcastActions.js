@@ -29,7 +29,7 @@ export const fetchForcast = (key, metric=false) =>{
             return response.json()
         })
         .then(data=>{
-            dispatch(fetchForcastSuccess(data.DailyForecasts))
+            dispatch(fetchForcastSuccess({id:key, forcasts: data.DailyForecasts}))
         })
         .catch(err=>{
             dispatch(fetchForcastFailure(err))
