@@ -4,3 +4,19 @@
 .search-error-message{
     color:#d9534f;
 }
+.dark .dropdown-item{
+    color: white;
+}
+.dark .dropdown-item:hover{
+    background-color: #616b74 !important;
+}
+.dark .dropdown-menu.show{
+    background-color: rgb(33, 37, 41) !important;
+}
+.dark .rbt-input{
+    background-color: rgb(33, 37, 41) !important;
+    color: white !important;
+}
+.dark .rbt-input-hint{
+    color: rgba(255, 255, 255, 0.5) !important;
+}
