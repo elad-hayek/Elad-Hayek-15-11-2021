@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Toast } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { removeFromErrorStack } from '../../actionCreators/homeActions'
 
-const ErrorToast = ({id, error}) =>{
-    const [show, setShow] = useState(true)
+const ErrorToast = ({id, name, error}) =>{
+    const dispatch = useDispatch()
+
     return(
-        <Toast onClose={()=>setShow(false)} show={show} delay={3000} autohide bg="danger">
+        <Toast onClose={()=>{dispatch(removeFromErrorStack(id))}} delay={3000} autohide bg="danger">
             <Toast.Header>
-            <strong className="me-auto">Bootstrap</strong>
+            <strong className="me-auto">{name}</strong>
             </Toast.Header>
             <Toast.Body  className="text-white">{error}</Toast.Body>
         </Toast>
