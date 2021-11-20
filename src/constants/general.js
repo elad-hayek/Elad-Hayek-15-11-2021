@@ -7,3 +7,8 @@ export const weekday = [
 "Friday",
 "Saturday",
 ]
+
+export const themes ={
+    light: 'light',
+    dark: 'dark'
+}
