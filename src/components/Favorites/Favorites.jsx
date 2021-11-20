@@ -6,14 +6,13 @@ import LocationCard from './LocationCard/LocationCard'
 
 const Favorites = () =>{
     const favorites = useSelector(state=>state.favorites.favorites)
-    let  f  = [...favorites, ...favorites,...favorites,...favorites,...favorites]
 
     return(
         <div className="favorites-container">
             { favorites.length !== 0?
                 <div className="favorites-cards-container">
                     {
-                        [...f,...f,...f].map(location=>{
+                        favorites.map(location=>{
                             return(
                                 <LocationCard location={location} key={Math.random()}/>
                             )
