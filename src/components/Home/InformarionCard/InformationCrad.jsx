@@ -40,9 +40,7 @@ const InformationCard = () =>{
         <div className="information-card-container">
             <div className="information-card">
                 {
-                    objectValidation(currentLocation)
-                    || currentWeather.loading?
-
+                    currentWeather.loading?
                     <div className="top-of-information-card">
                         <Spinner className="current-weather-spinner" animation="border" role="status">
                             <span className="visually-hidden">Loading...</span>
@@ -54,6 +52,8 @@ const InformationCard = () =>{
                         <div>{currentWeather.error}</div>
                     </div>
 
+                    :objectValidation(currentLocation)?
+                    <div></div>
                     :
                     <>
                     <div className="top-of-information-card">
