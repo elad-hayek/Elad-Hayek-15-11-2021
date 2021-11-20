@@ -1,3 +1,6 @@
 .main-searchbar-container{
     margin-top: 4%;
 }
+.search-error-message{
+    color:#d9534f;
+}

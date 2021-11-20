@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-import Form from 'react-bootstrap/Form'
 import './SearchBar.css'
 import { AsyncTypeahead, Typeahead } from 'react-bootstrap-typeahead'
 import autocomplete from '../../../apivalues/autocomplete.json'
@@ -32,7 +31,8 @@ const SearchBar = () =>{
     return(
         <div className="main-searchbar-container">
             <Container>
-                {/* <AsyncTypeahead 
+                { locations.error && <small className="search-error-message" >{locations.error}</small>}
+                <AsyncTypeahead 
                     id="city-serch-autocomplete"
                     isLoading={locations.loading}
                     labelKey={option => `${option.Country.LocalizedName} - ${option.LocalizedName}`}
@@ -43,16 +43,15 @@ const SearchBar = () =>{
                     onChange={(selected)=>{setSelectedCity(selected)}}
                     selected={selectedCity}
                     placeholder="Search for a city"
-                /> */}
-                <Typeahead
+                    />
+                {/* <Typeahead
                     id="city-serch-autocomplete"
                     labelKey={option => `${option.Country.LocalizedName} - ${option.LocalizedName}`}
                     onChange={(selected)=>{setSelectedCity(selected)}}
                     options={autocomplete}
                     placeholder="Search for a city"
                     selected={selectedCity}
-                />
-                {/* <Form.Control  placeholder="Search for a city" ref={searchRef} onChange={handleChange}/> */}
+                /> */}
             </Container>
         </div>
     )
