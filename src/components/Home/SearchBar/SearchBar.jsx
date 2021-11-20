@@ -6,14 +6,28 @@ import { AsyncTypeahead, Typeahead } from 'react-bootstrap-typeahead'
 import autocomplete from '../../../apivalues/autocomplete.json'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchLocations } from '../../../actionCreators/locationsActions'
+import { fetchCurrentWeather } from '../../../actionCreators/currentWeatherActions'
+import { fetchForcast } from '../../../actionCreators/forcastActions'
+import { objectValidation } from '../../../actionCreators/generalFunctions'
 
 
 const SearchBar = () =>{
     const locations = useSelector(state=>state.locations)
+    const currentLocation = useSelector(state=>state.home.locationToView)
+    const forcast = useSelector(state=>state.forcast)
     const dispatch = useDispatch()
     const [selectedCity, setSelectedCity] = useState([])
 
-    useEffect(()=>{console.log(selectedCity)},[selectedCity])
+    useEffect(()=>{
+        if(selectedCity.length !== 0){
+            if(objectValidation(currentLocation) || currentLocation.id !== selectedCity[0].Key){
+                console.log(selectedCity[0].Key)
+                dispatch(fetchCurrentWeather(selectedCity[0].Key, selectedCity[0].LocalizedName))
+                dispatch(fetchForcast(selectedCity[0].Key, true))
+            }
+        }
+    },[selectedCity])
+
 
     return(
         <div className="main-searchbar-container">
@@ -28,6 +42,7 @@ const SearchBar = () =>{
                     options={locations.data}
                     onChange={(selected)=>{setSelectedCity(selected)}}
                     selected={selectedCity}
+                    placeholder="Search for a city"
                 /> */}
                 <Typeahead
                     id="city-serch-autocomplete"
