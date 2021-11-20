@@ -6,6 +6,7 @@ import configureStore from './configureStore';
 import { history } from './configureStore';
 import { Switch, Route } from 'react-router-dom'
 import App from './components/App/App';
+import './index.css'
 
 
 const store = configureStore()
