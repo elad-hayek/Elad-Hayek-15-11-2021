@@ -98,8 +98,9 @@ const InformationCard = () =>{
                             <div>{forcast.error}</div>
 
                             :
-                            forcast.data.length !==0 &&
-                             forcast.data.map(day=>{
+                            Object.keys(forcast.data).length !== 0 &&
+                            forcast !== undefined && forcast !== null &&
+                             forcast.data.forcasts.map(day=>{
                                 return(
                                     <div key={Math.random()}>
                                         <MiniForcastCard forcast={day} />
