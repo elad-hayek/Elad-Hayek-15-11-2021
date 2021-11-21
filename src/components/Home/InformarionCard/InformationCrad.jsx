@@ -63,7 +63,12 @@ const InformationCard = () =>{
                                 <div>{currentLocation.location.Temperature.Metric.Value} &#8451;</div>
                             </div>
                         </div>
-
+                        <div className="middle-of-information-card">
+                            <div className="weather-icon-container">
+                                <img alt="" src={returnUrlForWeatherIcon(currentLocation.location.WeatherIcon)}/>
+                            </div>
+                            <span className="current-weather-text">{currentLocation.location.WeatherText}</span>
+                        </div>
                         <OverlayTrigger
                             placement='top'
                             overlay={
@@ -81,10 +86,7 @@ const InformationCard = () =>{
                         </OverlayTrigger>
                     </div>
 
-                    <div className="middle-of-information-card">
-                        <img width="120" height="72" alt="" src={returnUrlForWeatherIcon(currentLocation.location.WeatherIcon)}/>
-                        <span className="current-weather-text">{currentLocation.location.WeatherText}</span>
-                    </div>
+                    
                     </>
                 }
 
@@ -105,9 +107,7 @@ const InformationCard = () =>{
                             objectValidation(forcast.data, "and") &&
                              forcast.data.forcasts.map(day=>{
                                 return(
-                                    <div key={Math.random()}>
-                                        <MiniForcastCard forcast={day} />
-                                    </div>
+                                    <MiniForcastCard forcast={day} key={Math.random()}/>
                                 )
                             })
                         }

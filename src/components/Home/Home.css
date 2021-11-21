@@ -1,6 +1,4 @@
 .home-information-container{
-    width: 100%;
-    height: 100%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -9,4 +7,11 @@
     position: relative;
     z-index: 99999;
     margin-top: 2%;
+}
+.search-and-info-container{
+    display:flex;
+    flex-direction: column;
+    /* height: 70vh; */
+    justify-content: space-evenly;
+
 }

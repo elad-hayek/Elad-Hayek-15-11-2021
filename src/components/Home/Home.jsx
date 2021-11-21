@@ -36,9 +36,11 @@ const Home = () =>{
                         })
                     }
             </ToastContainer>
-            <SearchBar/>
-            <div className="home-information-container">
-                <InformationCard />
+            <div className="search-and-info-container">
+                <SearchBar/>
+                <div className="home-information-container">
+                    <InformationCard />
+                </div>
             </div>
         </div>
     )

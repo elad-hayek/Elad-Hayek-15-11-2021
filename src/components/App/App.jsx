@@ -6,6 +6,7 @@ import {routes} from '../../constants/navigation'
 import Favorites from '../Favorites/Favorites'
 import Home from '../Home/Home'
 import NavBar from '../NavBar/NavBar'
+import './App.css'
 
 
 const App = () =>{
@@ -25,7 +26,7 @@ const App = () =>{
     },[theme])
 
     return(
-        <div>
+        <div className="app-container">
             <NavBar />
             <Switch>
                 <Route exact path={routes.HOME} component={Home}/>

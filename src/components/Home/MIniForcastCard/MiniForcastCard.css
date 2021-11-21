@@ -1,3 +1,7 @@
 .mini-forcast-card .card{
     background-color: rgba(0 0 0  /20%);
+    margin: 5px;
+}
+.mini-forcast-card{
+    flex-grow:1;
 }
